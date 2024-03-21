@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">AppCodility</string>
+    <string name="click_more_dogs">Click for more Dog Images</string>
+    <string name="welcome_to_dogs_world">Welcome to the Dogs World</string>
+    <string name="dog_image">Dog Image</string>
+</resources>
