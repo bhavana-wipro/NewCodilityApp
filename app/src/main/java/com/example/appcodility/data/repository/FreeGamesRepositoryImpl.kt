@@ -15,14 +15,10 @@ import javax.inject.Inject
 class FreeGamesRepositoryImpl @Inject constructor(private val freeGameApi: FreeGameApi) : FreeGamesRepository{
     override fun getFreeGames(): Flow<Resource<List<FreeGames>>> = flow{
         emit(Resource.Loading())
-        try {
-            val result = freeGameApi.getFreeGame().map {
-                it.toDomainFreeGames()
-            }
-            emit(Resource.Success(result))
-        } catch (e: Exception) {
-            emit(Resource.Error(e.message.toString()))
+        val result = freeGameApi.getFreeGame().map {
+            it.toDomainFreeGames()
         }
+        emit(Resource.Success(result))
     }.flowOn(Dispatchers.IO)
         .catch {
             emit(Resource.Error(it.message.toString()))

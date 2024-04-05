@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -20,7 +21,7 @@ import com.example.appcodility.presentation.free_game.state.FreeGameState
 
 @Composable
 fun GameScreen(freeGameState: FreeGameState) {
-    if (freeGameState?.freeGames?.isNotEmpty()!!) {
+    if (freeGameState.freeGames?.isNotEmpty()!!) {
         LazyColumn {
             items(freeGameState.freeGames) {
                 FreeGameItem(it)
@@ -28,7 +29,7 @@ fun GameScreen(freeGameState: FreeGameState) {
         }
     } else if (freeGameState.isLoading) {
         Box(modifier = Modifier.fillMaxSize()) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center).testTag("Progress indicator"))
         }
     }
 }
