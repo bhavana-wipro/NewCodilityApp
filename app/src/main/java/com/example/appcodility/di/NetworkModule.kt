@@ -4,6 +4,7 @@ import com.example.appcodility.core.utils.Constants
 import com.example.appcodility.data.remote.FreeGameApi
 import com.example.appcodility.data.repository.FreeGamesRepositoryImpl
 import com.example.appcodility.domain.repository.FreeGamesRepository
+import com.example.appcodility.domain.usecase.FreeGameUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,5 +37,11 @@ object NetworkModule {
     @Singleton
     fun provideFreeGameRepository(freeGameApi: FreeGameApi): FreeGamesRepository {
         return FreeGamesRepositoryImpl(freeGameApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFreeGameUseCase(repository: FreeGamesRepository): FreeGameUseCase {
+        return FreeGameUseCase(repository)
     }
 }

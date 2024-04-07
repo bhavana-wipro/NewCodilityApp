@@ -24,10 +24,10 @@ class FreeGameViewModel @Inject constructor(private  val useCase: FreeGameUseCas
     init {
         getAllFreeGames()
     }
-    private fun getAllFreeGames() = useCase().onEach {
+    fun getAllFreeGames() = useCase().onEach {
         when(it) {
             is Resource.Error -> {
-                _freeGameState.value = FreeGameState().copy(errorMsg = it?.msg)
+                _freeGameState.value = FreeGameState().copy(errorMsg = it.msg)
                 _uiEffect.emit(UiEffect.ShowSnackBar(it.msg.toString()))
             }
             is Resource.Loading -> {
